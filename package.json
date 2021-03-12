@@ -1,6 +1,7 @@
 {
   "name": "share-board",
   "version": "1.0.0",
+  "private" : true,
   "scripts": {
     "client": "cd client && yarn start",
     "server": "node server.js",
