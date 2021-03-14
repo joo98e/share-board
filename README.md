@@ -1,3 +1,22 @@
+### login
+```
+safety login process
+https://velog.io/@yaytomato
+```
+
+### redux
+```
+https://velog.io/@killi8n
+yarn add redux react-redux redux-observable rxjs rxjs-compat
+```
+
+
+### SASS
+> https://velog.io/@killi8n/3.-React-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-%EC%84%A4%EC%A0%95-%EB%B0%8F-%EA%B5%AC%EC%A1%B0-%EC%9E%A1%EA%B8%B0.-gpjmamqob0
+```
+경로 내 ./dev/sassTip.txt 참고
+```
+
 
 ### 망했음
 잘 안됐던 점!!
