@@ -8,7 +8,7 @@ import React, { Component } from "react";
 import Footer from './Footer';
 import Card from './Card';
 
-class ViewBoard extends Component {
+class board extends Component {
     render() {
 
         return (
@@ -22,5 +22,5 @@ class ViewBoard extends Component {
 }
 
 
-export default ViewBoard;
+export default board;
 

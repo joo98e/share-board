@@ -7,7 +7,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from "react-router-dom";
 
 import Home from './components/Home';
-import ViewBoard from './components/ViewBoard';
+import Login from './components/Login';
+import board from './components/board';
 import NavBar from './components/Navi';
 
 import reportWebVitals from './reportWebVitals';
@@ -27,13 +28,13 @@ ReactDOM.render(
         <Route exact path="/" component={Home}></Route>
 
         {/* Login */}
-        <Route exact path="/login">{/* <Login /> */}</Route>
+        <Route exact path="/login" component={Login}></Route>
 
         {/* Notice */}
         <Route exact path="/notice">{/* <Notice /> */}</Route>
 
-        {/* ViewBoard */}
-        <Route exact path="/ViewBoard" component={ViewBoard}></Route>
+        {/* board */}
+        <Route exact path="/board" component={board}></Route>
         
       </div>
     </div>

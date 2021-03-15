@@ -1,8 +1,13 @@
-import React from 'react';
+
+import React, { Component } from "react";
 import { Button, ButtonGroup, Dialog, TextField } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
-const styles = {
+import '../css/Home.css';
+import '../css/main.css'
+
+const styles = theme => ({
     mainOpenBtn: {
         position: "absolute",
         top: "50%",
@@ -20,88 +25,93 @@ const styles = {
     bgc: {
         backgroundColor: '#212121'
     }
-}
+})
 
-let loginInfo = {
-    user_id: '',
-    user_pw: ''
-};
+class SignIn extends Component {
 
-export default function SignIn(props) {
-
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-
-    };
-
-    const changeInfo = (e) => {
-        e.target.id.indexOf('id') !== -1 ? loginInfo.user_id = e.target.value : loginInfo.user_pw = e.target.value;
-    };
-
-    const loginMsg = () => {
-        // axios.post(
-        //     '/api/login',
-        //     {
-        //         user_id: loginInfo.user_id,
-        //         user_pw: loginInfo.user_pw
-        //     })
-        //     .then(function (response) {
-        //         console.log(response);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
-
-        // axios.post('/login', )
+    constructor(props) {
+        super(props);
+        this.state = {
+            // dialog
+            open: false,
+            user_id: '',
+            user_pw: ''
+        }
     }
 
-    return (
-        <div>
-            {/* 오픈 버튼 */}
-            <Button style={styles.mainOpenBtn} variant="contained" color="primary" onClick={handleClickOpen}>
-                {props.btnName}
-            </Button>
+    handleClickOpen = () => {
+        this.setState({
+            open: true
+        });
+    }
 
-            {/* 내용 */}
-            <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="SignIn-dialog-title"
-                aria-describedby="SignIn-dialog-description"
-            >
+    handleClickClose = () => {
+        this.setState({
+            open: false
+        });
+    }
 
-                {/* 로그인 폼 */}
-                <TextField
-                    id="filled-id-input"
-                    label="Id"
-                    type="id"
-                    autoComplete="current-id"
-                    variant="outlined"
-                    style={styles.m15}
-                    onChange={changeInfo}
-                />
-                <TextField
-                    id="filled-password-input"
-                    label="Password"
-                    type="password"
-                    autoComplete="current-password"
-                    variant="outlined"
-                    style={styles.m15}
-                    onChange={changeInfo}
-                />
+    handleValueChange = (e) => {
+        let nextState = {}
 
-                <ButtonGroup>
-                    <Button style={styles.p50} onClick={loginMsg} variant="text" color="primary" autoFocus>{props.btnTrue}</Button>
-                    <Button style={styles.p50} onClick={loginMsg} variant="text" color="primary">{props.btnFalse}</Button>
-                </ButtonGroup>
-            </Dialog>
+        nextState[e.target.name] = e.target.value;
 
-        </div>
-    );
+        this.setState(nextState);
+    }
+
+    SignIn = () => {
+        const url = '/login';
+        const formData = new FormData();
+        formData.append('user_id', this.state.user_id);
+        formData.append('user_pw', this.state.user_pw);
+
+        return axios.post(url, formData);
+    }
+
+    render() {
+        const { classes } = this.props;
+
+        return (
+            <div>
+                <Button className={classes.mainOpenBtn} variant="contained" color="primary" onClick={this.handleClickOpen}>Sign In</Button>
+                <Dialog
+                    open={this.state.open}
+                    onClose={this.handleClickClose}
+                    aria-labelledby="SignIn-dialog-title"
+                    aria-describedby="SignIn-dialog-description"
+                >
+                    {/* 로그인 폼 */}
+                    <TextField
+                        onChange={this.handleValueChange}
+                        name ="user_id"
+                        id="filled-id-input"
+                        label="Id"
+                        type="id"
+                        autoComplete="current-id"
+                        variant="outlined"
+                        className={classes.m15}
+                    />
+                    <TextField
+                        onChange={this.handleValueChange}
+                        name ="user_pw"
+                        id="filled-password-input"
+                        label="Password"
+                        type="password"
+                        autoComplete="current-password"
+                        variant="outlined"
+                        className={classes.m15}
+                    />
+
+                    <ButtonGroup>
+                        <Button className={classes.p50} variant="text" color="primary">로그인</Button>
+                        <Button className={classes.p50} variant="text" color="primary">아이디 / 비밀번호 찾기</Button>
+                    </ButtonGroup>
+
+                </Dialog>
+            </div>
+        )
+    }
 }
+
+
+export default withStyles(styles)(SignIn);

@@ -16,7 +16,6 @@ class Home extends Component {
         return (
             <div>
                 {/* login */}
-                <Login />
 
                 {/* logged */}
                 

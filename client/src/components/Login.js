@@ -12,22 +12,12 @@ class Login extends Component {
             <div>
 
                 {/* 로그인 버튼 */}
-                <SignIn 
-                    btnName="Sign In" 
-                    content="" 
-                    btnTrue="로그인" 
-                    btnFalse="아이디 / 비밀번호 찾기" 
-                />
+                <SignIn />
 
                 {/* 회원가입 버튼 */}
                 
-                <SignUp 
-                    btnName="Sign Up" 
-                    content="" 
-                    btnTrue="" 
-                    btnFalse="" 
-                />
-
+                <SignUp />
+                
             </div>
         )
     }
